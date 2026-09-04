@@ -1,0 +1,54 @@
+﻿<TextureAtlas>
+	<Texture>Slime1_Death_with_shadow</Texture>
+	<Regions>
+
+		<!-- Nedåt (rad 1) -->
+		<Region name="death_down_1"  x="0"    y="0"    width="64" height="64" />
+		<Region name="death_down_2"  x="64"   y="0"    width="64" height="64" />
+		<Region name="death_down_3"  x="128"  y="0"    width="64" height="64" />
+		<Region name="death_down_4"  x="192"  y="0"    width="64" height="64" />
+		<Region name="death_down_5"  x="256"  y="0"    width="64" height="64" />
+		<Region name="death_down_6"  x="320"  y="0"    width="64" height="64" />
+		<Region name="death_down_7"  x="384"  y="0"    width="64" height="64" />
+		<Region name="death_down_8"  x="448"  y="0"    width="64" height="64" />
+		<Region name="death_down_9"  x="512"  y="0"    width="64" height="64" />
+		<Region name="death_down_10" x="576"  y="0"    width="64" height="64" />
+
+		<!-- Uppåt (rad 2) -->
+		<Region name="death_up_1"    x="0"    y="64"   width="64" height="64" />
+		<Region name="death_up_2"    x="64"   y="64"   width="64" height="64" />
+		<Region name="death_up_3"    x="128"  y="64"   width="64" height="64" />
+		<Region name="death_up_4"    x="192"  y="64"   width="64" height="64" />
+		<Region name="death_up_5"    x="256"  y="64"   width="64" height="64" />
+		<Region name="death_up_6"    x="320"  y="64"   width="64" height="64" />
+		<Region name="death_up_7"    x="384"  y="64"   width="64" height="64" />
+		<Region name="death_up_8"    x="448"  y="64"   width="64" height="64" />
+		<Region name="death_up_9"    x="512"  y="64"   width="64" height="64" />
+		<Region name="death_up_10"   x="576"  y="64"   width="64" height="64" />
+
+		<!-- Vänster (rad 3) -->
+		<Region name="death_left_1"  x="0"    y="128"  width="64" height="64" />
+		<Region name="death_left_2"  x="64"   y="128"  width="64" height="64" />
+		<Region name="death_left_3"  x="128"  y="128"  width="64" height="64" />
+		<Region name="death_left_4"  x="192"  y="128"  width="64" height="64" />
+		<Region name="death_left_5"  x="256"  y="128"  width="64" height="64" />
+		<Region name="death_left_6"  x="320"  y="128"  width="64" height="64" />
+		<Region name="death_left_7"  x="384"  y="128"  width="64" height="64" />
+		<Region name="death_left_8"  x="448"  y="128"  width="64" height="64" />
+		<Region name="death_left_9"  x="512"  y="128"  width="64" height="64" />
+		<Region name="death_left_10" x="576"  y="128"  width="64" height="64" />
+
+		<!-- Höger (rad 4) -->
+		<Region name="death_right_1"  x="0"    y="192"  width="64" height="64" />
+		<Region name="death_right_2"  x="64"   y="192"  width="64" height="64" />
+		<Region name="death_right_3"  x="128"  y="192"  width="64" height="64" />
+		<Region name="death_right_4"  x="192"  y="192"  width="64" height="64" />
+		<Region name="death_right_5"  x="256"  y="192"  width="64" height="64" />
+		<Region name="death_right_6"  x="320"  y="192"  width="64" height="64" />
+		<Region name="death_right_7"  x="384"  y="192"  width="64" height="64" />
+		<Region name="death_right_8"  x="448"  y="192"  width="64" height="64" />
+		<Region name="death_right_9"  x="512"  y="192"  width="64" height="64" />
+		<Region name="death_right_10" x="576"  y="192"  width="64" height="64" />
+
+	</Regions>
+</TextureAtlas>

@@ -1,0 +1,38 @@
+﻿<TextureAtlas>
+	<Texture>Slime1_Walk_with_shadow</Texture>
+	<Regions>
+
+		<!-- Nedåt (rad 1) -->
+		<Region name="walk_down_1"  x="0"   y="0"    width="64" height="64" />
+		<Region name="walk_down_2"  x="64"  y="0"    width="64" height="64" />
+		<Region name="walk_down_3"  x="128" y="0"    width="64" height="64" />
+		<Region name="walk_down_4"  x="192" y="0"    width="64" height="64" />
+		<Region name="walk_down_5"  x="256" y="0"    width="64" height="64" />
+		<Region name="walk_down_6"  x="320" y="0"    width="64" height="64" />
+
+		<!-- Uppåt (rad 2) -->
+		<Region name="walk_up_1"    x="0"   y="64"   width="64" height="64" />
+		<Region name="walk_up_2"    x="64"  y="64"   width="64" height="64" />
+		<Region name="walk_up_3"    x="128" y="64"   width="64" height="64" />
+		<Region name="walk_up_4"    x="192" y="64"   width="64" height="64" />
+		<Region name="walk_up_5"    x="256" y="64"   width="64" height="64" />
+		<Region name="walk_up_6"    x="320" y="64"   width="64" height="64" />
+
+		<!-- Vänster (rad 3) -->
+		<Region name="walk_left_1"  x="0"   y="128"  width="64" height="64" />
+		<Region name="walk_left_2"  x="64"  y="128"  width="64" height="64" />
+		<Region name="walk_left_3"  x="128" y="128"  width="64" height="64" />
+		<Region name="walk_left_4"  x="192" y="128"  width="64" height="64" />
+		<Region name="walk_left_5"  x="256" y="128"  width="64" height="64" />
+		<Region name="walk_left_6"  x="320" y="128"  width="64" height="64" />
+
+		<!-- Höger (rad 4) -->
+		<Region name="walk_right_1" x="0"   y="192"  width="64" height="64" />
+		<Region name="walk_right_2" x="64"  y="192"  width="64" height="64" />
+		<Region name="walk_right_3" x="128" y="192"  width="64" height="64" />
+		<Region name="walk_right_4" x="192" y="192"  width="64" height="64" />
+		<Region name="walk_right_5" x="256" y="192"  width="64" height="64" />
+		<Region name="walk_right_6" x="320" y="192"  width="64" height="64" />
+
+	</Regions>
+</TextureAtlas>

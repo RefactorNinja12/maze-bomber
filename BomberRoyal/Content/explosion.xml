@@ -1,0 +1,15 @@
+﻿<TextureAtlas>
+	<Texture>explosion</Texture>
+	<Regions>
+		<Region name="explosion_1"  x="0"    y="0" width="256" height="256" />
+		<Region name="explosion_2"  x="256"  y="0" width="256" height="256" />
+		<Region name="explosion_3"  x="512"  y="0" width="256" height="256" />
+		<Region name="explosion_4"  x="768"  y="0" width="256" height="256" />
+		<Region name="explosion_5"  x="1024" y="0" width="256" height="256" />
+		<Region name="explosion_6"  x="1280" y="0" width="256" height="256" />
+		<Region name="explosion_7"  x="1536" y="0" width="256" height="256" />
+		<Region name="explosion_8"  x="1792" y="0" width="256" height="256" />
+		<Region name="explosion_9"  x="2048" y="0" width="256" height="256" />
+		<Region name="explosion_10" x="2304" y="0" width="256" height="256" />
+	</Regions>
+</TextureAtlas>
