@@ -1,6 +1,7 @@
 ﻿
 using BomberRoyal.Core.Event;
 using BomberRoyal.Core.Features.BombFeature;
+using BomberRoyal.Core.Features.PathfindingFeature;
 using BomberRoyal.Core.Features.PhysicsFeature;
 using BomberRoyal.Core.Features.PlayerFeature;
 using Microsoft.Xna.Framework;
@@ -15,8 +16,8 @@ namespace BomberRoyal.Core.Features.EnemyFeature
         private readonly float _explodeDelay = 2.5f;
         private readonly int _explodeRadius = 2;
 
-        public ExplodingEnemy(Vector2 startPos, CollisionChecker c, Player p, IEventBus eventBus)
-            : base(startPos, c, p, eventBus)
+        public ExplodingEnemy(Vector2 startPos, CollisionChecker c, Player p, IEventBus eventBus, EnemyFlowFieldService flowField)
+            : base(startPos, c, p, eventBus, flowField)
         {
             Speed = 35f;
             Health = 80f;

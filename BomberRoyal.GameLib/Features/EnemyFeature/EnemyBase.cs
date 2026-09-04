@@ -15,7 +15,7 @@ public abstract class EnemyBase : IEnemy
     protected readonly IEventBus _eventBus;
     protected readonly CollisionChecker _collisionChecker;
     protected readonly Player _player;
-    protected readonly Pathfinder _pathfinder;
+    protected readonly EnemyFlowFieldService _flowField;
 
     protected Queue<Point> _path = new();
     protected float _repathTimer = 0f;
@@ -46,12 +46,12 @@ public abstract class EnemyBase : IEnemy
     public Rectangle Hitbox =>
         new((int)(Position.X - Width / 2), (int)(Position.Y - Height / 2), Width, Height);
 
-    protected EnemyBase(Vector2 startPos, CollisionChecker collision, Player player, IEventBus eventBus)
+    protected EnemyBase(Vector2 startPos, CollisionChecker collision, Player player, IEventBus eventBus, EnemyFlowFieldService flowField)
     {
         _eventBus = eventBus;
         _collisionChecker = collision;
         _player = player;
-        _pathfinder = new Pathfinder(GameManager.Instance.Maze, collision);
+        _flowField = flowField;
         Position = startPos;
         SnapToNearestWalkableTile();
     }
@@ -99,7 +99,7 @@ public abstract class EnemyBase : IEnemy
 
         UpdateFacingDirection();
     }
-    // Beräknar ny väg till spelaren med A*
+    // Hämtar ny väg till spelaren från den delade flow field-tjänsten
     protected void CalculatePathToPlayer()
     {
         if (_player == null)
@@ -107,9 +107,8 @@ public abstract class EnemyBase : IEnemy
 
         int tileSize = 42;
         Point start = new((int)(Position.X / tileSize), (int)(Position.Y / tileSize));
-        Point goal = new((int)(_player.Position.X / tileSize), (int)(_player.Position.Y / tileSize));
 
-        var newPath = _pathfinder.FindPath(start, goal);
+        var newPath = _flowField.GetPathFrom(start);
         _path = new Queue<Point>(newPath);
     }
     // Flyttar fienden stegvis mot nästa tile i pathen.

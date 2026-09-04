@@ -1,4 +1,5 @@
 ﻿using BomberRoyal.Core.Event;
+using BomberRoyal.Core.Features.PathfindingFeature;
 using BomberRoyal.Core.Features.PhysicsFeature;
 using BomberRoyal.Core.Features.PlayerFeature;
 using Microsoft.Xna.Framework;
@@ -8,8 +9,8 @@ namespace BomberRoyal.Core.Features.EnemyFeature
 {
     public class BasicEnemy : EnemyBase
     {
-        public BasicEnemy(Vector2 startPos, CollisionChecker c, Player p, IEventBus eventBus)
-            : base(startPos, c, p, eventBus)
+        public BasicEnemy(Vector2 startPos, CollisionChecker c, Player p, IEventBus eventBus, EnemyFlowFieldService flowField)
+            : base(startPos, c, p, eventBus, flowField)
         {
             Speed = 30f;
             Health = 100f;
