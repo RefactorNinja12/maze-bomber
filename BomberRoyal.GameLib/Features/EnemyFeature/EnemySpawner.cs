@@ -1,6 +1,7 @@
 ﻿using BomberRoyal.Core.Event;
 using BomberRoyal.Core.Features.BoardFeature;
 using BomberRoyal.Core.Features.EnemyFeature;
+using BomberRoyal.Core.Features.PathfindingFeature;
 using BomberRoyal.Core.Features.PhysicsFeature;
 using BomberRoyal.Core.Features.PlayerFeature;
 using BomberRoyal.Core.Shared;
@@ -14,6 +15,7 @@ public class EnemySpawner
     private readonly MazeData _maze;
     private readonly Player _player;
     private readonly CollisionChecker _collisionChecker;
+    private readonly EnemyFlowFieldService _flowField;
     public List<EnemyBase> _sharedEnemies;
 
     private readonly ObjectPool<BasicEnemy> _basicPool;
@@ -27,26 +29,27 @@ public class EnemySpawner
     private int _enemiesToSpawn = 0;     
     private int _wave = 1;
 
-    private const int MaxEnemies = 25;
+    private const int MaxEnemies = 50;
     private const float _minDistanceToPlayer = 10f;
 
-    public EnemySpawner(MazeData maze, Player player, CollisionChecker collisionChecker, List<EnemyBase> sharedEnemies, IEventBus eventBus)
+    public EnemySpawner(MazeData maze, Player player, CollisionChecker collisionChecker, List<EnemyBase> sharedEnemies, IEventBus eventBus, EnemyFlowFieldService flowField)
     {
         _eventBus = eventBus;
         _maze = maze;
         _player = player;
         _collisionChecker = collisionChecker;
         _sharedEnemies = sharedEnemies;
+        _flowField = flowField;
 
         _eventBus.Subscribe<EnemyDiedEvent>(OnEnemyDied);
 
         _basicPool = new ObjectPool<BasicEnemy>(
-            () => new BasicEnemy(Vector2.Zero, _collisionChecker, _player, _eventBus),
+            () => new BasicEnemy(Vector2.Zero, _collisionChecker, _player, _eventBus, _flowField),
             InitialCapacity: 10
         );
 
         _exploderPool = new ObjectPool<ExplodingEnemy>(
-            () => new ExplodingEnemy(Vector2.Zero, _collisionChecker, _player, _eventBus),
+            () => new ExplodingEnemy(Vector2.Zero, _collisionChecker, _player, _eventBus, _flowField),
             InitialCapacity: 5
         );
     }

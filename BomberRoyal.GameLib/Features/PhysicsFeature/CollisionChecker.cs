@@ -22,6 +22,7 @@ namespace BomberRoyal.Core.Features.PhysicsFeature
 
         private readonly HashSet<Point> _playerGhostTiles = new();
         private readonly HashSet<Point> _ignoredBombTiles = new();
+        private readonly Dictionary<Point, List<EnemyBase>> _enemyGrid = new();
 
         private const int TILE_SIZE = 42;
 
@@ -53,12 +54,39 @@ namespace BomberRoyal.Core.Features.PhysicsFeature
       
         public void Update(float delta)
         {
+            RebuildEnemyGrid();
+
             if (_player == null) return;
 
             Rectangle playerRect = _player.Hitbox;
 
             RemoveTilesOutside(playerRect, _playerGhostTiles);
             RemoveTilesOutside(playerRect, _ignoredBombTiles);
+        }
+
+        // Grupperar levande fiender per tile så att CollidesWithEnemy bara behöver
+        // kolla grannrutorna istället för alla fiender (O(n) istället för O(n^2)).
+        private void RebuildEnemyGrid()
+        {
+            foreach (var bucket in _enemyGrid.Values)
+                bucket.Clear();
+
+            foreach (var enemy in _enemies)
+            {
+                if (!enemy.IsAlive) continue;
+
+                var tile = new Point(
+                    (int)(enemy.Position.X / TILE_SIZE),
+                    (int)(enemy.Position.Y / TILE_SIZE));
+
+                if (!_enemyGrid.TryGetValue(tile, out var bucket))
+                {
+                    bucket = new List<EnemyBase>();
+                    _enemyGrid[tile] = bucket;
+                }
+
+                bucket.Add(enemy);
+            }
         }
 
         // Tar bort tiles från en lista när spelaren inte längre står på dem.
@@ -176,15 +204,26 @@ namespace BomberRoyal.Core.Features.PhysicsFeature
 
         public bool CollidesWithEnemy(Rectangle hitbox, EnemyBase self)
         {
-            foreach (var enemy in _enemies)
-            {
-                if (ReferenceEquals(enemy, self)) continue;
-                if (!enemy.IsAlive) continue;
+            int centerTileX = (int)(self.Position.X / TILE_SIZE);
+            int centerTileY = (int)(self.Position.Y / TILE_SIZE);
 
-                if (hitbox.Intersects(enemy.Hitbox))
+            for (int y = centerTileY - 1; y <= centerTileY + 1; y++)
+            {
+                for (int x = centerTileX - 1; x <= centerTileX + 1; x++)
                 {
-                    ResolveEnemyPush(self, enemy);
-                    return true;
+                    if (!_enemyGrid.TryGetValue(new Point(x, y), out var bucket))
+                        continue;
+
+                    foreach (var enemy in bucket)
+                    {
+                        if (ReferenceEquals(enemy, self)) continue;
+
+                        if (hitbox.Intersects(enemy.Hitbox))
+                        {
+                            ResolveEnemyPush(self, enemy);
+                            return true;
+                        }
+                    }
                 }
             }
             return false;
